@@ -1,34 +1,67 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Alert, Image } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Image, Linking, Alert } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function LandingPage({ navigation }: { navigation: any }) {
   const handleLogin = () => {
-    navigation.navigate('UserAuth'); // Navigate to the authentication page
+    navigation.navigate('UserAuth'); // Navigate to the User Authentication Page
   };
 
-  const handleForgotPassword = () => {
-    Alert.alert('Forgot Password', 'This feature is not implemented yet.');
+  const handleSignUp = () => {
+    // Show a popup saying the page is under maintenance
+    Alert.alert(
+      'Under Maintenance',
+      'The Sign Up page is currently under maintenance. Please try again later.',
+      [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
+    );
   };
 
   return (
-    <View style={styles.container}>
+    <LinearGradient
+      colors={['#007bff', '#f5f5f5']} // Gradient background
+      style={styles.container}
+    >
+      {/* Logo */}
       <Image
-        source={{ uri: 'https://via.placeholder.com/150' }} // Replace with your app logo
+        source={require('../assets/logo.png')} // Use the added logo
         style={styles.logo}
       />
-      <Text style={styles.title}>Welcome to Secure App</Text>
+
+      {/* Welcome Text */}
+      <Text style={styles.title}>Welcome to Ryt Bank</Text>
       <Text style={styles.subtitle}>
-        Please log in to access your account or reset your password if needed.
+        Your trusted partner in secure banking.
       </Text>
 
-      <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
-        <Text style={styles.loginButtonText}>Login</Text>
-      </TouchableOpacity>
+      {/* Buttons */}
+      <View style={styles.buttonContainer}>
+        {/* Login Button */}
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
+          <Text style={styles.loginButtonText}>Login</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity style={styles.forgotPasswordButton} onPress={handleForgotPassword}>
-        <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
-      </TouchableOpacity>
-    </View>
+        {/* Sign Up Button */}
+        <TouchableOpacity style={styles.signUpButton} onPress={handleSignUp}>
+          <Text style={styles.signUpButtonText}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
+
+      {/* Footer Links */}
+      <View style={styles.footer}>
+        <Text
+          style={styles.footerLink}
+          onPress={() => Linking.openURL('https://rytbank.com/privacy-policy')}
+        >
+          Privacy Policy
+        </Text>
+        <Text
+          style={styles.footerLink}
+          onPress={() => Linking.openURL('https://rytbank.com/terms')}
+        >
+          Terms of Service
+        </Text>
+      </View>
+    </LinearGradient>
   );
 }
 
@@ -37,28 +70,51 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
     padding: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
-    marginBottom: 20,
-    borderRadius: 50,
+    width: 150,
+    height: 150,
+    marginBottom: 30,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff',
     marginBottom: 10,
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: '#f5f5f5',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 40,
+    paddingHorizontal: 20,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
+    marginBottom: 40,
   },
   loginButton: {
+    backgroundColor: '#fff',
+    paddingVertical: 15,
+    paddingHorizontal: 30,
+    borderRadius: 8,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+    marginRight: 5,
+  },
+  loginButtonText: {
+    color: '#007bff',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  signUpButton: {
     backgroundColor: '#007bff',
     paddingVertical: 15,
     paddingHorizontal: 30,
@@ -68,19 +124,22 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    marginBottom: 15,
   },
-  loginButtonText: {
+  signUpButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
   },
-  forgotPasswordButton: {
-    paddingVertical: 10,
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '80%',
   },
-  forgotPasswordText: {
-    color: '#007bff',
+  footerLink: {
     fontSize: 14,
-    fontWeight: 'bold',
+    color: '#007bff',
+    textDecorationLine: 'underline',
   },
 });

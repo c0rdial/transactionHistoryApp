@@ -30,7 +30,7 @@ export default function AppNavigator() {
         <Stack.Screen
           name="TransactionDetail"
           component={TransactionDetailScreen}
-          options={{ title: 'Transaction Detail' }}
+          options={{ title: 'Transaction Details' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -30,7 +30,7 @@ export default function TransactionHistoryScreen({ navigation }: { navigation: a
 
   const onRefresh = () => {
     setRefreshing(true);
-    setTransactions(getTransactions()); // Simulate fetching new data
+    setTransactions(getTransactions()); //fetching new data from service file
     setRefreshing(false);
   };
 
@@ -38,7 +38,7 @@ export default function TransactionHistoryScreen({ navigation }: { navigation: a
     <View style={styles.container}>
       <TouchableOpacity style={styles.authButton} onPress={handleBiometricAuth}>
         <Text style={styles.authButtonText}>
-          {showAmounts ? 'Amounts Revealed' : 'Reveal Amounts'}
+          {showAmounts ? 'Amount Revealeds ' : 'View Amounts'}
         </Text>
       </TouchableOpacity>
 
