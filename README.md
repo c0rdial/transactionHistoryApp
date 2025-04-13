@@ -55,19 +55,8 @@ Before running the project, ensure you have the following installed:
 3. Alternatively, scan the QR code displayed in the terminal using the Expo Go app on your mobile device.
 
 ## Project Structure
-TransactionHistoryApp/
-├── assets/              # Static assets (e.g., images, icons)
-├── components/          # Reusable components (e.g., TransactionItem, ErrorBoundary)
-├── src/
-│   ├── navigation/      # Navigation setup (e.g., AppNavigator)
-│   ├── pages/           # Screens (e.g., LandingPage, UserAuthPage)
-│   ├── service/         # Services (e.g., transactionService)
-│   └── styles/          # Shared styles (if applicable)
-├── App.tsx              # Main app entry point
-├── package.json         # Project dependencies and scripts
-├── tsconfig.json        # TypeScript configuration
-└── README.md            # Project documentation
-</details>
+
+![Project Structure](./assets/project-structure.png)
 
 ## Environment Variables
 This project does not currently use environment variables. If needed, you can add a .env file for storing sensitive information and use a library like react-native-dotenv to load them.
