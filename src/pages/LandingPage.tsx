@@ -4,16 +4,26 @@ import { LinearGradient } from 'expo-linear-gradient';
 
 export default function LandingPage({ navigation }: { navigation: any }) {
   const handleLogin = () => {
-    navigation.navigate('UserAuth'); // Navigate to the User Authentication Page
+    try {
+      navigation.navigate('UserAuth'); // Navigate to the User Authentication Page
+    } catch (error) {
+      console.error('Navigation error:', error);
+      Alert.alert('Error', 'Unable to navigate to the login page.');
+    }
   };
 
   const handleSignUp = () => {
-    // Show a popup saying the page is under maintenance
-    Alert.alert(
-      'Under Maintenance',
-      'The Sign Up page is currently under maintenance. Please try again later.',
-      [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
-    );
+    try {
+      // Show a popup saying the page is under maintenance
+      Alert.alert(
+        'Under Maintenance',
+        'The Sign Up page is currently under maintenance. Please try again later.',
+        [{ text: 'OK', onPress: () => console.log('OK Pressed') }]
+      );
+    } catch (error) {
+      console.error('Sign Up error:', error);
+      Alert.alert('Error', 'An unexpected error occurred.');
+    }
   };
 
   return (
@@ -107,12 +117,14 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    marginRight: 5,
+    marginRight: 10,
+    width: '48%',
   },
   loginButtonText: {
     color: '#007bff',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   signUpButton: {
     backgroundColor: '#007bff',
@@ -124,11 +136,13 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
+    width: '48%',
   },
   signUpButtonText: {
     color: '#fff',
     fontSize: 16,
     fontWeight: 'bold',
+    textAlign: 'center',
   },
   footer: {
     position: 'absolute',

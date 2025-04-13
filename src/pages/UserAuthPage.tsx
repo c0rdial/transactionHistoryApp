@@ -2,24 +2,29 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Image } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function UserAuthPage({ navigation }: { navigation: any }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      setIsAuthenticated(false);
+    }, [])
+  );
 
   const handleBiometricAuth = async () => {
     try {
       // Check if the device supports biometric authentication
       const hasHardware = await LocalAuthentication.hasHardwareAsync();
       if (!hasHardware) {
-        Alert.alert('Error', 'Biometric authentication is not supported on this device.');
-        return;
+        throw new Error('Biometric authentication is not supported on this device.');
       }
 
       // Check if biometrics are enrolled
       const isEnrolled = await LocalAuthentication.isEnrolledAsync();
       if (!isEnrolled) {
-        Alert.alert('Error', 'No biometrics are enrolled on this device.');
-        return;
+        throw new Error('No biometrics are enrolled on this device.');
       }
 
       // Prompt the user for biometric authentication
