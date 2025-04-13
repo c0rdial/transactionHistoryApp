@@ -54,7 +54,7 @@ Before running the project, ensure you have the following installed:
 
 3. Alternatively, scan the QR code displayed in the terminal using the Expo Go app on your mobile device.
 
-<details> <summary><strong>📁 Project Structure</strong> (click to expand)</summary>
+## Project Structure
 TransactionHistoryApp/
 ├── assets/              # Static assets (e.g., images, icons)
 ├── components/          # Reusable components (e.g., TransactionItem, ErrorBoundary)
