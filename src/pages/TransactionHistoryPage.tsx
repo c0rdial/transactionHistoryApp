@@ -1,15 +1,8 @@
 import React, { useState } from 'react';
-import {
-  FlatList,
-  StyleSheet,
-  Text,
-  View,
-  TouchableOpacity,
-  RefreshControl,
-  Alert,
-} from 'react-native';
+import { FlatList, StyleSheet, View, TouchableOpacity, RefreshControl, Alert, Text } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 import { getTransactions, Transaction } from '../service/transactionService';
+import TransactionItem from '../../components/TransactionItem';
 
 export default function TransactionHistoryScreen({ navigation }: { navigation: any }) {
   const [transactions, setTransactions] = useState<Transaction[]>(getTransactions());
@@ -41,26 +34,6 @@ export default function TransactionHistoryScreen({ navigation }: { navigation: a
     setRefreshing(false);
   };
 
-  const formatCurrency = (amount: number): string => {
-    return new Intl.NumberFormat('en-MY', {
-      style: 'currency',
-      currency: 'MYR',
-    }).format(amount);
-  };
-
-  const renderTransaction = ({ item }: { item: Transaction }) => (
-    <TouchableOpacity
-      style={styles.transactionItem}
-      onPress={() => navigation.navigate('TransactionDetail', { transaction: item })}
-    >
-      <Text style={styles.description}>{item.description}</Text>
-      <Text style={styles.date}>{new Date(item.date).toLocaleDateString()}</Text>
-      <Text style={[styles.amount, item.type === 'credit' ? styles.credit : styles.debit]}>
-        {showAmounts ? formatCurrency(item.amount) : '****'}
-      </Text>
-    </TouchableOpacity>
-  );
-
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.authButton} onPress={handleBiometricAuth}>
@@ -72,7 +45,13 @@ export default function TransactionHistoryScreen({ navigation }: { navigation: a
       <FlatList
         data={transactions}
         keyExtractor={(item) => item.id}
-        renderItem={renderTransaction}
+        renderItem={({ item }) => (
+          <TransactionItem
+            transaction={item}
+            onPress={() => navigation.navigate('TransactionDetail', { transaction: item })}
+            showAmount={showAmounts}
+          />
+        )}
         refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
         contentContainerStyle={styles.list}
       />
@@ -101,36 +80,5 @@ const styles = StyleSheet.create({
   },
   list: {
     paddingBottom: 16,
-  },
-  transactionItem: {
-    backgroundColor: '#fff',
-    padding: 16,
-    marginBottom: 10,
-    borderRadius: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 2,
-  },
-  description: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginBottom: 4,
-  },
-  date: {
-    fontSize: 14,
-    color: '#666',
-    marginBottom: 8,
-  },
-  amount: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  credit: {
-    color: 'green',
-  },
-  debit: {
-    color: 'red',
   },
 });
