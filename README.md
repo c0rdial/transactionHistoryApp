@@ -54,20 +54,20 @@ Before running the project, ensure you have the following installed:
 
 3. Alternatively, scan the QR code displayed in the terminal using the Expo Go app on your mobile device.
 
-## Project Structure
-
+<details> <summary><strong>📁 Project Structure</strong> (click to expand)</summary>
 TransactionHistoryApp/
-├── assets/                  # Static assets (e.g., images, icons)
-├── components/              # Reusable components (e.g., TransactionItem, ErrorBoundary)
+├── assets/              # Static assets (e.g., images, icons)
+├── components/          # Reusable components (e.g., TransactionItem, ErrorBoundary)
 ├── src/
-│   ├── navigation/          # Navigation setup (e.g., AppNavigator)
-│   ├── pages/               # Screens (e.g., LandingPage, UserAuthPage)
-│   ├── service/             # Services (e.g., transactionService)
-│   ├── styles/              # Shared styles (if applicable)
-├── [App.tsx](http://_vscodecontentref_/0)                  # Main app entry point
-├── [package.json](http://_vscodecontentref_/1)             # Project dependencies and scripts
-├── [tsconfig.json](http://_vscodecontentref_/2)            # TypeScript configuration
-├── [README.md](http://_vscodecontentref_/3)                # Project documentation
+│   ├── navigation/      # Navigation setup (e.g., AppNavigator)
+│   ├── pages/           # Screens (e.g., LandingPage, UserAuthPage)
+│   ├── service/         # Services (e.g., transactionService)
+│   └── styles/          # Shared styles (if applicable)
+├── App.tsx              # Main app entry point
+├── package.json         # Project dependencies and scripts
+├── tsconfig.json        # TypeScript configuration
+└── README.md            # Project documentation
+</details>
 
 ## Environment Variables
 This project does not currently use environment variables. If needed, you can add a .env file for storing sensitive information and use a library like react-native-dotenv to load them.
