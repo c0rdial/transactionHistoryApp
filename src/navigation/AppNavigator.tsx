@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
 import LandingPage from '../pages/LandingPage';
 import UserAuthPage from '../pages/UserAuthPage';
+import TransactionHistoryScreen from '../pages/TransactionHistoryPage';
 
 const Stack = createStackNavigator();
 
@@ -19,6 +20,11 @@ export default function AppNavigator() {
           name="UserAuth"
           component={UserAuthPage}
           options={{ title: 'User Authentication' }}
+        />
+        <Stack.Screen
+          name="TransactionHistory"
+          component={TransactionHistoryScreen}
+          options={{ title: 'Transaction History' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

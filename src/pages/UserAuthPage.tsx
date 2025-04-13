@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Image } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
 
-export default function UserAuthPage() {
+export default function UserAuthPage({ navigation }: { navigation: any }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const handleBiometricAuth = async () => {
@@ -30,6 +30,7 @@ export default function UserAuthPage() {
       if (result.success) {
         setIsAuthenticated(true);
         Alert.alert('Success', 'You are now authenticated!');
+        navigation.navigate('TransactionHistory'); // Navigate to Transaction History Screen
       } else {
         Alert.alert('Failed', 'Authentication failed. Please try again.');
       }
@@ -54,10 +55,6 @@ export default function UserAuthPage() {
         <Text style={styles.authButtonText}>
           {isAuthenticated ? 'Authenticated' : 'Login with Biometrics'}
         </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.fallbackButton} onPress={() => Alert.alert('Fallback', 'Use another login method.')}>
-        <Text style={styles.fallbackButtonText}>Use Another Login Method</Text>
       </TouchableOpacity>
     </View>
   );
@@ -99,19 +96,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 4,
     elevation: 5,
-    marginBottom: 15,
   },
   authButtonText: {
     color: '#fff',
     fontSize: 16,
-    fontWeight: 'bold',
-  },
-  fallbackButton: {
-    paddingVertical: 10,
-  },
-  fallbackButtonText: {
-    color: '#007bff',
-    fontSize: 14,
     fontWeight: 'bold',
   },
 });
