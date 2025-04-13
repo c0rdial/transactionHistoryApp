@@ -11,7 +11,7 @@ import {
 import * as LocalAuthentication from 'expo-local-authentication';
 import { getTransactions, Transaction } from '../service/transactionService';
 
-export default function TransactionHistoryScreen() {
+export default function TransactionHistoryScreen({ navigation }: { navigation: any }) {
   const [transactions, setTransactions] = useState<Transaction[]>(getTransactions());
   const [refreshing, setRefreshing] = useState(false);
   const [showAmounts, setShowAmounts] = useState(false);
@@ -45,18 +45,20 @@ export default function TransactionHistoryScreen() {
     return new Intl.NumberFormat('en-MY', {
       style: 'currency',
       currency: 'MYR',
-      minimumFractionDigits: 2,
-    }).format(amount); 
-  }
+    }).format(amount);
+  };
 
   const renderTransaction = ({ item }: { item: Transaction }) => (
-    <View style={styles.transactionItem}>
+    <TouchableOpacity
+      style={styles.transactionItem}
+      onPress={() => navigation.navigate('TransactionDetail', { transaction: item })}
+    >
       <Text style={styles.description}>{item.description}</Text>
       <Text style={styles.date}>{new Date(item.date).toLocaleDateString()}</Text>
       <Text style={[styles.amount, item.type === 'credit' ? styles.credit : styles.debit]}>
         {showAmounts ? formatCurrency(item.amount) : '****'}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 
   return (

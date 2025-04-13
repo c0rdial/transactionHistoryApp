@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import LandingPage from '../pages/LandingPage';
 import UserAuthPage from '../pages/UserAuthPage';
 import TransactionHistoryScreen from '../pages/TransactionHistoryPage';
+import TransactionDetailScreen from '../pages/TransactionDetailsPage';
 
 const Stack = createStackNavigator();
 
@@ -25,6 +26,11 @@ export default function AppNavigator() {
           name="TransactionHistory"
           component={TransactionHistoryScreen}
           options={{ title: 'Transaction History' }}
+        />
+        <Stack.Screen
+          name="TransactionDetail"
+          component={TransactionDetailScreen}
+          options={{ title: 'Transaction Detail' }}
         />
       </Stack.Navigator>
     </NavigationContainer>
