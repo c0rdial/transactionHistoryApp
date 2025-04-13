@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert, Image } from 'react-native';
 import * as LocalAuthentication from 'expo-local-authentication';
+import { LinearGradient } from 'expo-linear-gradient';
 
 export default function UserAuthPage({ navigation }: { navigation: any }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,22 +42,34 @@ export default function UserAuthPage({ navigation }: { navigation: any }) {
   };
 
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: 'https://via.placeholder.com/150' }} // Replace with your app logo
-        style={styles.logo}
-      />
-      <Text style={styles.title}>Welcome Back!</Text>
+    <LinearGradient
+      colors={['#007bff', '#f5f5f5']} // Gradient background
+      style={styles.container}
+    >
+      {/* Logo */}
+       <Image
+              source={require('../../assets/user-icon.png')} // Use the added logo
+              style={styles.logo}
+            />
+
+      {/* Welcome Text */}
+      <Text style={styles.title}>Welcome Back User!</Text>
       <Text style={styles.subtitle}>
         Log in securely using your biometrics to access your account.
       </Text>
 
+      {/* Biometric Authentication Button */}
       <TouchableOpacity style={styles.authButton} onPress={handleBiometricAuth}>
         <Text style={styles.authButtonText}>
           {isAuthenticated ? 'Authenticated' : 'Login with Biometrics'}
         </Text>
       </TouchableOpacity>
-    </View>
+
+      {/* Decorative Footer */}
+      <View style={styles.footer}>
+        <Text style={styles.footerText}>Your security is our priority.</Text>
+      </View>
+    </LinearGradient>
   );
 }
 
@@ -65,29 +78,30 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#f5f5f5',
     padding: 20,
   },
   logo: {
-    width: 100,
-    height: 100,
+    width: 120,
+    height: 120,
     marginBottom: 20,
-    borderRadius: 50,
+    borderRadius: 60,
   },
   title: {
-    fontSize: 24,
+    fontSize: 28,
     fontWeight: 'bold',
-    color: '#333',
+    color: '#fff', // White text
     marginBottom: 10,
+    textAlign: 'center',
   },
   subtitle: {
     fontSize: 16,
-    color: '#666',
+    color: '#f5f5f5', // Light gray text
     textAlign: 'center',
     marginBottom: 30,
+    paddingHorizontal: 20,
   },
   authButton: {
-    backgroundColor: '#007bff',
+    backgroundColor: '#fff', // White button
     paddingVertical: 15,
     paddingHorizontal: 30,
     borderRadius: 8,
@@ -98,8 +112,18 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   authButtonText: {
-    color: '#fff',
+    color: '#007bff', // Blue text
     fontSize: 16,
     fontWeight: 'bold',
+  },
+  footer: {
+    position: 'absolute',
+    bottom: 20,
+    alignItems: 'center',
+  },
+  footerText: {
+    fontSize: 14,
+    color: '#f5f5f5', // Light gray text
+    textAlign: 'center',
   },
 });

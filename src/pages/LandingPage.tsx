@@ -23,12 +23,12 @@ export default function LandingPage({ navigation }: { navigation: any }) {
     >
       {/* Logo */}
       <Image
-        source={require('../assets/logo.png')} // Use the added logo
+        source={require('../../assets/logo.png')} // Use the added logo
         style={styles.logo}
       />
 
       {/* Welcome Text */}
-      <Text style={styles.title}>Welcome to Ryt Bank</Text>
+      <Text style={styles.title}>Welcome to Ipsum Bank</Text>
       <Text style={styles.subtitle}>
         Your trusted partner in secure banking.
       </Text>
@@ -50,13 +50,13 @@ export default function LandingPage({ navigation }: { navigation: any }) {
       <View style={styles.footer}>
         <Text
           style={styles.footerLink}
-          onPress={() => Linking.openURL('https://rytbank.com/privacy-policy')}
+          onPress={() => Linking.openURL('https://www.rytbank.my/privacy-notice')}
         >
           Privacy Policy
         </Text>
         <Text
           style={styles.footerLink}
-          onPress={() => Linking.openURL('https://rytbank.com/terms')}
+          onPress={() => Linking.openURL('https://www.rytbank.my/terms-of-use')}
         >
           Terms of Service
         </Text>
