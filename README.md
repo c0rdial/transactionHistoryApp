@@ -33,17 +33,20 @@ Before running the project, ensure you have the following installed:
    git clone https://github.com/c0rdial/transactionHistoryApp.git
 
 2. Navigate to the project directory
-    `cd transactionHistoryApp`
+   ```bash
+   cd transactionHistoryApp
 
-3. Install dependencies:
-    `npm install`
+4. Install dependencies:
+   ```bash
+   npm install
 
 ## Running the App
 
 1. Start the Expo Development server:
-    `expo start`
+   ```bash
+   expo start
 
-2. Open the app on your device or emulator:
+3. Open the app on your device or emulator:
 
 - iOS: Press i in the terminal to open the app in the iOS Simulator (requires macOS).
 - Android: Press a in the terminal to open the app in an Android emulator or connected device.
